@@ -70,3 +70,4 @@ func move_to():
 		if selected_cell in movable_cells:
 			set_global_pos(board.map_to_world(selected_cell))
 			movable_cells.clear()
+			is_selected = false
