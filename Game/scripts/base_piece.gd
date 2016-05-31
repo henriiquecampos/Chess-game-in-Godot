@@ -42,9 +42,12 @@ func _on_base_piece_mouse_exit():
 
 func select_piece():
 	#Toggle between selected and unselected
-	if is_selected == false:
+	if is_selected == false and self.is_in_group(str(controller.turn)):
 		is_selected = true
-		calc_cell_white(which_piece)
+		if controller.turn == "white":
+			calc_cell_white(which_piece)
+		elif controller.turn == "black":
+			calc_cell_black(which_piece)
 	else:
 		is_selected = false
 ####################################################
@@ -54,6 +57,7 @@ func calc_cell_white(piece):
 	#Checks if is selected and calc the movement according
 	#to the type of cell being selected
 	if is_selected:
+		#Calculation for the pawn piece
 		if piece == "pawn":
 			if already_moved:
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -1))
@@ -61,7 +65,25 @@ func calc_cell_white(piece):
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -1))
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -2))
 				already_moved = true
-			print(movable_cells)
+			print("moving")
+		############################################
+
+func calc_cell_black(piece):
+	self_cell = board.world_to_map(self.get_pos())
+	#Checks if is selected and calc the movement according
+	#to the type of cell being selected
+	if is_selected:
+		#Calculation for the pawn piece
+		if piece == "pawn":
+			if already_moved:
+				movable_cells.append(Vector2(self_cell.x, self_cell.y +1))
+			else:
+				movable_cells.append(Vector2(self_cell.x, self_cell.y +1))
+				movable_cells.append(Vector2(self_cell.x, self_cell.y +2))
+				already_moved = true
+			print("moving")
+		############################################
+
 ####################################################
 
 func move_to():
@@ -71,3 +93,4 @@ func move_to():
 			set_global_pos(board.map_to_world(selected_cell))
 			movable_cells.clear()
 			is_selected = false
+			controller.toggle_turn()
