@@ -61,12 +61,12 @@ func calc_cell_white(piece):
 		if piece == "pawn":
 			if already_moved:
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -1))
+				capture(movable_cells)
 			else:
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -1))
 				movable_cells.append(Vector2(self_cell.x, self_cell.y -2))
 				already_moved = true
 			print("moving")
-		############################################
 
 func calc_cell_black(piece):
 	self_cell = board.world_to_map(self.get_pos())
@@ -82,8 +82,6 @@ func calc_cell_black(piece):
 				movable_cells.append(Vector2(self_cell.x, self_cell.y +2))
 				already_moved = true
 			print("moving")
-		############################################
-
 ####################################################
 
 func move_to():
@@ -94,3 +92,14 @@ func move_to():
 			movable_cells.clear()
 			is_selected = false
 			controller.toggle_turn()
+####################################################
+
+func capture(cells):
+	var opponent_pieces = get_node("/root/main_scene/player_black").get_children()
+	var capturable = []
+	for i in range(0, opponent_pieces.size()):
+		capturable.append(board.world_to_map(opponent_pieces[i].get_pos()))
+		i += 1
+	print(capturable)
+	if movable_cells in capturable:
+		print("can capture")
