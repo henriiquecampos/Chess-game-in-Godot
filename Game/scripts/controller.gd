@@ -8,4 +8,3 @@ func toggle_turn():
 		turn = "black"
 	else:
 		turn = "white"
-	print("changing turn")
