@@ -1,5 +1,5 @@
 
-extends Node2D
+extends Sprite
 
 export var which_piece = "Piece"
 onready var base = get_node("base_piece")
@@ -23,6 +23,7 @@ func calc_cell_white(piece):
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2))
 				base.already_moved = true
+####################################################
 
 func calc_cell_black(piece):
 	base.parent_cell = base.board.world_to_map(base.parent.get_pos())
