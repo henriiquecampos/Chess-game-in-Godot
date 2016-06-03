@@ -13,7 +13,7 @@ var parent_cell = null
 var selected_cell = null
 
 #Capture required variables
-var opponent_pieces
+var opponent_pieces = []
 
 #Nodes needed
 onready var parent = get_node("..")
@@ -48,10 +48,7 @@ func select_piece():
 	if is_selected == false and parent.is_in_group(str(controller.turn)):
 		is_selected = true
 		print("it is selected")
-		if controller.turn == "white":
-			parent.calc_cell_white(parent.which_piece)
-		elif controller.turn == "black":
-			parent.calc_cell_black(parent.which_piece)
+		parent.calc_cell(parent.which_piece)
 	else:
 		is_selected = false
 		print("deselected")
