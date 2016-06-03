@@ -1,6 +1,7 @@
 
 extends Sprite
 
+#Base piece acess variables
 export var which_piece = "Piece"
 onready var base = get_node("base_piece")
 
@@ -19,7 +20,7 @@ func calc_cell(piece):
 	if base.is_selected:
 		#Calculation for the pawn piece
 		if piece == "pawn":
-			print("calculating pawn_white")
+			print("calculating pawn")
 			if base.already_moved:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc))
 			else:

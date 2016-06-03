@@ -13,7 +13,7 @@ var parent_cell = null
 var selected_cell = null
 
 #Capture required variables
-var opponent_pieces
+var opponent_pieces = []
 
 #Nodes needed
 onready var parent = get_node("..")
