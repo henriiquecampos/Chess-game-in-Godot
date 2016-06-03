@@ -7,6 +7,7 @@ onready var base = get_node("base_piece")
 #Rook only variables
 var can_cast = true
 
+####################################################
 func calc_cell(piece):
 	base.parent_cell = base.board.world_to_map(base.parent.get_pos())
 	#Checks if is selected and calc the movement according
@@ -17,20 +18,12 @@ func calc_cell(piece):
 			print("calculating rook")
 			if base.already_moved:
 				can_cast = false
-				for i in range(0,7):
-					base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
-					base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
-				for i in range(0,7):
-					base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
-					base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
-				print(base.movable_cells)
-			else:
-				for i in range(0,7):
-					base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
-					base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
-				for i in range(0,7):
-					base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
-					base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
-				print(base.movable_cells)
-				base.already_moved = true
-
+			for i in range(0,8):
+				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
+				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
+			for i in range(0,8):
+				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
+				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
+			print(base.movable_cells)
+			base.already_moved = true
+####################################################

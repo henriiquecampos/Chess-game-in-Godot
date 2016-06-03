@@ -14,11 +14,10 @@ func calc_cell(piece):
 		#Calculation for the pawn piece
 		if piece == "bishop":
 			print("calculating bishop")
-			for i in range(0,7):
+			for i in range(0,8):
 				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y -i))
 				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y +i))
 				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y +i))
 				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y -i))
-				if 
 			print(base.movable_cells)
 ####################################################
