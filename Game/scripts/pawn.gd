@@ -4,11 +4,7 @@ extends Sprite
 #Base piece acess variables
 export var which_piece = "Piece"
 onready var base = get_node("base_piece")
-
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+####################################################
 
 func calc_cell(piece):
 	base.parent_cell = base.board.world_to_map(base.parent.get_pos())
