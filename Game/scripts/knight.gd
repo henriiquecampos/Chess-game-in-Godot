@@ -11,6 +11,7 @@ func calc_cell(piece):
 	#Checks if is selected and calc the movement according
 	#to the type of cell being selected
 	if base.is_selected:
+		#Calculation for the knight piece
 		if piece == "knight":
 			print("calculating knight")
 			base.movable_cells.append(Vector2(base.parent_cell.x +2, base.parent_cell.y +1))
