@@ -19,8 +19,10 @@ func calc_cell(piece):
 			print("calculating pawn")
 			if base.already_moved:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc))
+
 			else:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2 * calc))
+
 				base.already_moved = true
 ####################################################

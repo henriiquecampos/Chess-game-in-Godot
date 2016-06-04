@@ -56,6 +56,10 @@ func select_piece():
 
 func move_to():
 	selected_cell = board.world_to_map(get_viewport().get_mouse_pos())
+	#Clear every cell that is not the board cells
+	for cell in movable_cells:
+		if board.get_cell(cell.x, cell.y) == -1:
+			movable_cells.erase(cell)
 	if not selected_cell == parent_cell:
 		if selected_cell in movable_cells:
 			var where_cap = capture()
@@ -63,6 +67,7 @@ func move_to():
 				opponent_pieces[where_cap.find(selected_cell)].queue_free()
 			parent.set_global_pos(board.map_to_world(selected_cell))
 			movable_cells.clear()
+
 			opponent_pieces.clear()
 			is_selected = false
 			controller.toggle_turn()
@@ -78,3 +83,6 @@ func capture():
 		capturable.append(board.world_to_map(opponent_pieces[i].get_pos()))
 		i += 1
 	return capturable
+
+func _on_base_piece_exit_tree():
+	print("I " + str(parent.get_name()) + " was captured")
