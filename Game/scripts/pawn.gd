@@ -24,5 +24,3 @@ func calc_cell(piece):
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2 * calc))
 				base.already_moved = true
 ####################################################
-func _on_pawn_exit_tree():
-	print("I WAS CAPTURED")

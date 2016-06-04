@@ -37,10 +37,8 @@ func _process(delta):
 #Verifies which piece is being clicked
 func _on_base_piece_mouse_enter():
 	is_on_top = true
-	print("is on")
 func _on_base_piece_mouse_exit():
 	is_on_top = false
-	print("is out")
 ###################################################
 
 func select_piece():
@@ -51,6 +49,8 @@ func select_piece():
 		parent.calc_cell(parent.which_piece)
 	else:
 		is_selected = false
+		movable_cells.clear()
+		opponent_pieces.clear()
 		print("deselected")
 ####################################################
 
@@ -66,7 +66,6 @@ func move_to():
 			opponent_pieces.clear()
 			is_selected = false
 			controller.toggle_turn()
-			print("moving")
 ####################################################
 
 func capture():

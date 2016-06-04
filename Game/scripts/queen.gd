@@ -10,7 +10,7 @@ func calc_cell(piece):
 	#Checks if is selected and calc the movement according
 	#to the type of cell being selected
 	if base.is_selected:
-		#Calculation for the pawn piece
+		#Calculation for the queen piece
 		if piece == "queen":
 			print("calculating queen")
 			for i in range(0,8):

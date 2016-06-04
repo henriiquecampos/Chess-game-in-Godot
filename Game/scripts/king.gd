@@ -15,7 +15,7 @@ func calc_cell(piece):
 	#Checks if is selected and calc the movement according
 	#to the type of cell being selected
 	if base.is_selected:
-		#Calculation for the pawn piece
+		#Calculation for the king piece
 		if piece == "king":
 			print("calculating king")
 			if base.already_moved:
