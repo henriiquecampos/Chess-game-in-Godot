@@ -21,7 +21,6 @@ func calc_cell(piece):
 			for i in range(0,8):
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
-			for i in range(0,8):
 				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
 				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
 			base.already_moved = true
