@@ -13,15 +13,61 @@ func calc_cell(piece):
 		#Calculation for the queen piece
 		if piece == "queen":
 			print("calculating queen")
-			for i in range(0,8):
-				#Diagonal
-				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y -i))
-				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y +i))
-				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y +i))
-				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y -i))
-				#Vertical and horizontal
-				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
-				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
-				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
-				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
-####################################################
+			#Diagonal movement
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x -i, base.parent_cell.y -i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x +i, base.parent_cell.y +i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x -i, base.parent_cell.y +i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x + i, base.parent_cell.y -i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			#Perpendicular movement
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x, base.parent_cell.y -i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x, base.parent_cell.y +i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x -i, base.parent_cell.y)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x + i, base.parent_cell.y)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
