@@ -19,8 +19,32 @@ func calc_cell(piece):
 			print("calculating pawn")
 			if base.already_moved:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc))
+				for cell in base.controller.pieces_cells:
+					if cell == Vector2(base.parent_cell.x + (1 * -calc), base.parent_cell.y + (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y - (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y + (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc):
+						base.movable_cells.erase(cell)
 			else:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2 * calc))
+				for cell in base.controller.pieces_cells:
+					if cell == Vector2(base.parent_cell.x + (1 * -calc), base.parent_cell.y + (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y - (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y + (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc):
+						base.movable_cells.erase(cell)
 				base.already_moved = true
 ####################################################

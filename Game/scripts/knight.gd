@@ -23,4 +23,5 @@ func calc_cell(piece):
 			base.movable_cells.append(Vector2(base.parent_cell.x -1, base.parent_cell.y +2))
 			base.movable_cells.append(Vector2(base.parent_cell.x -2, base.parent_cell.y -1))
 			base.movable_cells.append(Vector2(base.parent_cell.x -1, base.parent_cell.y -2))
+
 ####################################################

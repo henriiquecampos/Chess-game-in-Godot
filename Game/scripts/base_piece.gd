@@ -37,6 +37,8 @@ func _process(delta):
 #Verifies which piece is being clicked
 func _on_base_piece_mouse_enter():
 	is_on_top = true
+	controller.who = parent
+	print(controller.who.get_name())
 func _on_base_piece_mouse_exit():
 	is_on_top = false
 ###################################################
@@ -45,8 +47,9 @@ func select_piece():
 	#Toggle between selected and unselected
 	if is_selected == false and parent.is_in_group(str(controller.turn)):
 		is_selected = true
-		print("it is selected")
+		movable_cells.clear()
 		parent.calc_cell(parent.which_piece)
+
 	else:
 		is_selected = false
 		movable_cells.clear()
@@ -56,25 +59,30 @@ func select_piece():
 
 func move_to():
 	selected_cell = board.world_to_map(get_viewport().get_mouse_pos())
+	#Clear cells that belong to allies
+	for piece in parent.get_parent().get_children():
+		if piece.is_in_group(parent.get_groups()[0]):
+			movable_cells.erase(board.world_to_map(piece.get_pos()))
+	#Clear every cell that is not the board cells
+	for cell in movable_cells:
+		if board.get_cell(cell.x, cell.y) == -1:
+			movable_cells.erase(cell)
 	if not selected_cell == parent_cell:
 		if selected_cell in movable_cells:
-			var where_cap = capture()
-			if selected_cell in where_cap:
-				opponent_pieces[where_cap.find(selected_cell)].queue_free()
+
+			#verifies if the cell is occupied, and set the right behaviour if it is
+			if (board.world_to_map(controller.who.get_pos()) in movable_cells):
+				print(controller.who.get_groups())
+				print(parent.get_groups())
+				if (controller.who.get_groups() != parent.get_groups()):
+					controller.who.queue_free()
+					
 			parent.set_global_pos(board.map_to_world(selected_cell))
+
+			#Cleaning to the next turn
 			movable_cells.clear()
-			opponent_pieces.clear()
 			is_selected = false
 			controller.toggle_turn()
 ####################################################
-
-func capture():
-	if controller.turn == "white":
-		opponent_pieces = get_node("/root/main_scene/player_black").get_children()
-	else:
-		opponent_pieces = get_node("/root/main_scene/player_white").get_children()
-	var capturable = []
-	for i in range(0, opponent_pieces.size()):
-		capturable.append(board.world_to_map(opponent_pieces[i].get_pos()))
-		i += 1
-	return capturable
+func _on_base_piece_exit_tree():
+	print("I " + str(parent.get_name()) + " was captured")

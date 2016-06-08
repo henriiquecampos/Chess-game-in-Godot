@@ -18,11 +18,33 @@ func calc_cell(piece):
 			print("calculating rook")
 			if base.already_moved:
 				can_cast = false
-			for i in range(0,8):
-				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -i))
-				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y +i))
-			for i in range(0,8):
-				base.movable_cells.append(Vector2(base.parent_cell.x -i, base.parent_cell.y))
-				base.movable_cells.append(Vector2(base.parent_cell.x +i, base.parent_cell.y))
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x, base.parent_cell.y -i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x, base.parent_cell.y +i)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x -i, base.parent_cell.y)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
+			for i in range(1,8):
+				var cell = Vector2(base.parent_cell.x + i, base.parent_cell.y)
+				if cell in base.controller.pieces_cells:
+					base.movable_cells.append(cell)
+					break
+				else:
+					base.movable_cells.append(cell)
 			base.already_moved = true
 ####################################################
