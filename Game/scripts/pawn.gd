@@ -26,6 +26,9 @@ func calc_cell(piece):
 					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y - (1 * -calc)):
 						base.movable_cells.append(cell)
 						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y + (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
 					elif cell == Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc):
 						base.movable_cells.erase(cell)
 			else:
@@ -36,6 +39,9 @@ func calc_cell(piece):
 						base.movable_cells.append(cell)
 						print("Capture")
 					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y - (1 * -calc)):
+						base.movable_cells.append(cell)
+						print("Capture")
+					elif cell == Vector2(base.parent_cell.x - (1 * -calc), base.parent_cell.y + (1 * -calc)):
 						base.movable_cells.append(cell)
 						print("Capture")
 					elif cell == Vector2(base.parent_cell.x, base.parent_cell.y -1 * calc):
