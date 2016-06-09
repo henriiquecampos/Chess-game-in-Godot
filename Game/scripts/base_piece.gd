@@ -38,7 +38,6 @@ func _process(delta):
 func _on_base_piece_mouse_enter():
 	is_on_top = true
 	controller.who = parent
-	print(controller.who.get_name())
 func _on_base_piece_mouse_exit():
 	is_on_top = false
 ###################################################
@@ -59,6 +58,21 @@ func select_piece():
 
 func move_to():
 	selected_cell = board.world_to_map(get_viewport().get_mouse_pos())
+	#Rook - King movement
+	if controller.who.get_name() == "king" and parent.which_piece == "rook":
+		if board.world_to_map(controller.who.get_pos()) in movable_cells:
+			if controller.who.can_cast and parent.can_cast:
+				controller.who.set_global_pos(board.map_to_world(Vector2 (parent_cell.x + (1 * parent.rook_var), parent_cell.y)))
+				var king_pos = board.world_to_map(controller.who.get_pos())
+				selected_cell = king_pos
+				parent.set_global_pos(board.map_to_world(Vector2 (king_pos.x + (1 * parent.rook_var), king_pos.y)))
+				
+				#Cleaning to the next turn
+				movable_cells.clear()
+				is_selected = false
+				controller.toggle_turn()
+	####################################################
+
 	#Clear cells that belong to allies
 	for piece in parent.get_parent().get_children():
 		if piece.is_in_group(parent.get_groups()[0]):
@@ -67,6 +81,9 @@ func move_to():
 	for cell in movable_cells:
 		if board.get_cell(cell.x, cell.y) == -1:
 			movable_cells.erase(cell)
+	####################################################
+	
+	#Actual movement
 	if not selected_cell == parent_cell:
 		if selected_cell in movable_cells:
 
@@ -78,6 +95,7 @@ func move_to():
 					controller.who.queue_free()
 					
 			parent.set_global_pos(board.map_to_world(selected_cell))
+	####################################################
 
 			#Cleaning to the next turn
 			movable_cells.clear()

@@ -6,6 +6,7 @@ onready var base = get_node("base_piece")
 
 #Rook only variables
 var can_cast = true
+export var rook_var = 0
 ####################################################
 
 func calc_cell(piece):
