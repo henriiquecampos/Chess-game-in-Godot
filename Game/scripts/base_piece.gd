@@ -58,7 +58,8 @@ func select_piece():
 
 func move_to():
 	selected_cell = board.world_to_map(get_viewport().get_mouse_pos())
-	#Rook - King movement
+#Special movements
+	#Rook - Castling
 	if controller.who.get_name() == "king" and parent.which_piece == "rook":
 		if board.world_to_map(controller.who.get_pos()) in movable_cells:
 			if controller.who.can_cast and parent.can_cast:
@@ -71,6 +72,16 @@ func move_to():
 				movable_cells.clear()
 				is_selected = false
 				controller.toggle_turn()
+	#Pawn En Passant
+
+	if is_selected:
+		if parent.which_piece == "pawn":
+			controller.en_passant = true
+			if controller.pawn_pos == selected_cell and selected_cell in movable_cells:
+				if controller.en_passant:
+					print("En Passant")
+					controller.pawn.queue_free()
+					#controller.en_passant = false
 	####################################################
 
 	#Clear cells that belong to allies
