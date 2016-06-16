@@ -38,11 +38,15 @@ func calc_cell(piece):
 					base.movable_cells.append(base.controller.pawn_pos)
 				base.already_moved = true
 			else:
+				#En Passant variables
+				print(base.controller.pawn_pos)
+				base.controller.pawn_pos = base.board.world_to_map(self.get_pos())
+				base.controller.pawn_pos = Vector2(base.controller.pawn_pos.x, base.controller.pawn_pos.y + (1 * -turn))
+				base.controller.pawn = self
+				
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * turn))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2 * turn))
 				
-				base.controller.pawn_pos = base.board.world_to_map(self.get_pos())
-				base.controller.pawn = self
 				for cell in base.controller.pieces_cells:
 					if cell == Vector2(base.parent_cell.x + (1 * -turn), base.parent_cell.y + (1 * -turn)):
 						base.movable_cells.append(cell)
