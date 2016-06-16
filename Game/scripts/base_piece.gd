@@ -69,6 +69,8 @@ func move_to():
 				parent.set_global_pos(board.map_to_world(Vector2 (king_pos.x + (1 * parent.rook_var), king_pos.y)))
 				
 				#Cleaning to the next turn
+				parent.can_cast = false
+				controller.who.can_cast = false
 				movable_cells.clear()
 				is_selected = false
 				controller.toggle_turn()
@@ -77,7 +79,7 @@ func move_to():
 	if is_selected:
 		if parent.which_piece == "pawn":
 			if controller.pawn_pos == selected_cell and selected_cell in movable_cells:
-				if controller.en_passant:
+				if controller.en_passant and controller.pawn != parent:
 					print("En Passant")
 					controller.pawn.queue_free()
 	####################################################
