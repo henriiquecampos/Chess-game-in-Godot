@@ -72,7 +72,7 @@ func move_to():
 				movable_cells.clear()
 				is_selected = false
 				controller.toggle_turn()
-	#Pawn En Passant
+	#Pawn - En Passant
 
 	if is_selected:
 		if parent.which_piece == "pawn":

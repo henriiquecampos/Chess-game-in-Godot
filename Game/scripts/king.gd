@@ -31,3 +31,7 @@ func calc_cell(piece):
 			base.movable_cells.append(Vector2(base.parent_cell.x -1, base.parent_cell.y))
 			base.movable_cells.append(Vector2(base.parent_cell.x +1, base.parent_cell.y))
 ####################################################
+
+
+func _on_king_exit_tree():
+	get_tree().quit()
