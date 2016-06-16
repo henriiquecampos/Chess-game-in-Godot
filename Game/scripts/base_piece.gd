@@ -76,12 +76,10 @@ func move_to():
 
 	if is_selected:
 		if parent.which_piece == "pawn":
-			controller.en_passant = true
 			if controller.pawn_pos == selected_cell and selected_cell in movable_cells:
 				if controller.en_passant:
 					print("En Passant")
 					controller.pawn.queue_free()
-					#controller.en_passant = false
 	####################################################
 
 	#Clear cells that belong to allies

@@ -36,6 +36,7 @@ func calc_cell(piece):
 					base.movable_cells.append(base.controller.pawn_pos)
 				elif base.controller.pawn_pos == Vector2(base.parent_cell.x - (1 * -turn), base.parent_cell.y + (1 * -turn)) and base.controller.en_passant:
 					base.movable_cells.append(base.controller.pawn_pos)
+				base.already_moved = true
 			else:
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -1 * turn))
 				base.movable_cells.append(Vector2(base.parent_cell.x, base.parent_cell.y -2 * turn))
