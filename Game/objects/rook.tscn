@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/rook.gd" type="Script" id=1]
+[ext_resource path="res://objects/base_piece.tscn" type="PackedScene" id=2]
+
+[node name="rook" type="Sprite"]
+
+script/script = ExtResource( 1 )
+which_piece = "Piece"
+rook_var = 0
+
+[node name="base_piece" parent="." instance=ExtResource( 2 )]
+
+
