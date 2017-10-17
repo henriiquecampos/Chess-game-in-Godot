@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/king.gd" type="Script" id=1]
+[ext_resource path="res://objects/base_piece.tscn" type="PackedScene" id=2]
+
+[node name="king" type="Sprite"]
+
+script/script = ExtResource( 1 )
+which_piece = "Piece"
+
+[node name="base_piece" parent="." instance=ExtResource( 2 )]
+
+[connection signal="exit_tree" from="." to="." method="_on_king_exit_tree"]
+
+
